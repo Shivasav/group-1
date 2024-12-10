@@ -3,11 +3,15 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { createError } from "../error.js";
 import User from "../models/user.js";
+import cors from "cors";
 
 dotenv.config();
 
 //user register controller
 export const UserRegister = async (req, res, next) => {
+
+    app.use(cors());
+
   try {
     const { email, password, name, img } = req.body;
     const existingUser = await User.findOne({ email });
