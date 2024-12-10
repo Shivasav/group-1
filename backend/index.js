@@ -8,7 +8,14 @@ import OrderRouter from "./routes/orders.js";
 dotenv.config();
 
 const app = express();
-app.use(cors());
+const corsOptions = {
+  origin: "https://group-1-fe.onrender.com", // Replace with your frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],  // Allow relevant HTTP methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
+  credentials: true,  // If you're using cookies or authorization headers
+};
+
+app.use(cors(corsOptions)); 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 
